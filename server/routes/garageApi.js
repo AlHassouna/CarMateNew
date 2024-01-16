@@ -1,106 +1,86 @@
-import express from 'express'
+import express from "express";
+import Car from "../models/Car.js";
+import Service from "../models/Service.js";
+import Part from "../models/Part.js";
+import Order from "../models/Order.js";
+import User from "../models/User.js";
 
-const router = express.Router()
-import CarModel from '../models/Car.js'
-import ServiceModel from '../models/Service.js'
-import PartsModel from '../models/Parts.js'
-import UserModel from '../models/User.js'
-import CartModel from '../models/Cart.js'
-import Cars from '../data/cars.json' with {type: "json"}
-import Services from '../data/services.json' with {type: "json"}
-import Parts from "../data/parts.json" with {type: "json"}
-import Users from '../data/users.json' with {type: "json"}
+const router = express.Router();
 
-router.get('/car', async (req, res) => {
-    try {
-        const car = await CarModel.find({})
-        res.send(car)
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.get("/cars", async (req, res) => {
+  try {
+    const car = await Car.find({});
+    res.send(car);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-router.get('/init', async (req, res) => {
-    try {
-        await CarModel.insertMany(Cars)
-        await ServiceModel.insertMany(Services)
-        await PartsModel.insertMany(Parts)
-        await UserModel.insertMany(Users)
-        res.send('ok')
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.get("/users", async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.send(users);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-router.delete('/deleteall', async (req, res) => {
-    console.log("in here")
-    try {
-        await CarModel.deleteMany({})
-        await ServiceModel.deleteMany({})
-        await PartsModel.deleteMany({})
-        await UserModel.deleteMany({})
-        await CartModel.deleteMany({})
-        res.send("All deleted")
-    } catch (err) {
-        console.log(err)
-    }
-})
-router.get('/users', async (req, res) => {
-    try {
-        const users = await UserModel.find({})
-        res.send(users)
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.get("/services", async (req, res) => {
+  try {
+    const services = await Service.find({});
+    res.send(services);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-router.get('/services', async (req, res) => {
-    try {
-        const services = await ServiceModel.find({})
-        res.send(services)
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.post("/services", async (req, res) => {
+  const service = req.body;
+  try {
+    const newService = await Service.create(service);
+    const services = await Service.find({});
+    res.send(services);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-router.post('/service', async (req, res) => {
-    const service = req.body
-    try {
-        const newService = await ServiceModel.create(service)
-        const services = await ServiceModel.find({})
-        res.send(services)
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.get("/parts", async (req, res) => {
+  try {
+    const parts = await Part.find({});
+    res.send(parts);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
+router.get("/orders", async (req, res) => {
+  try {
+    const parts = await Order.find({});
+    res.send(parts);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-router.get('/parts', async (req, res) => {
-    try {
-        const parts = await PartsModel.find({})
-        res.send(parts)
-    } catch (error) {
-        console.log(error)
-    }
-})
+// router.get("/cart", async (req, res) => {
+//   try {
+//     const cart = await CartModel.find({});
+//     res.send(cart);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
-router.get('/cart', async (req, res) => {
-    try {
-        const cart = await CartModel.find({})
-        res.send(cart)
-    } catch (error) {
-        console.log(error)
-    }
-})
+// router.post("/cart", async (req, res) => {
+//   const cart = req.body;
+//   try {
+//     const newCart = await CartModel.create(cart);
+//     const cart = await CartModel.find({});
+//     res.send(cart);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
-router.post('/cart', async (req, res) => {
-    const cart = req.body
-    try {
-        const newCart = await CartModel.create(cart)
-        const cart = await CartModel.find({})
-        res.send(cart)
-    } catch (error) {
-        console.log(error)
-    }
-})
-export default router
+export default router;

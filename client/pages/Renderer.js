@@ -20,6 +20,7 @@ class Renderer {
 
   /* PRIVATE */
   #setActiveNavItem() {}
+
   #registerHelpers() {
     Handlebars.registerHelper("multiply", (num1, num2) =>
       (num1 * num2).toFixed(2)
@@ -28,6 +29,7 @@ class Renderer {
       (num1 / num2).toFixed(5)
     );
   }
+
   #registerPartials() {
     for (const key of Object.keys(this.#partials)) {
       $.ajax({
@@ -77,13 +79,14 @@ class Renderer {
 
   renderAllUsers(users) {
     $("main").empty();
-    $("main").append(this.#templates.admin({ users }));
+    $("main").append(this.#templates.admin(users));
   }
 
   renderAllPart(parts) {
     $("main").empty();
     $("main").append(this.#templates.part({ parts }));
   }
+
   renderAllCart(carts) {
     $("main").empty();
     $("main").append(this.#templates.cart({ carts }));
