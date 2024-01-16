@@ -6,6 +6,7 @@ class Renderer {
         navbar: null,
         admin: null,
         allServices: null,
+        addService: null,
         serviceDetails: null,
         part: null,
         cart: null,
@@ -23,6 +24,12 @@ class Renderer {
     }
 
     #registerHelpers() {
+        Handlebars.registerHelper("multiply", (num1, num2) =>
+            (num1 * num2).toFixed(2)
+        );
+        Handlebars.registerHelper("divide", (num1, num2) =>
+            (num1 / num2).toFixed(5)
+        );
     }
 
     #registerPartials() {
@@ -56,6 +63,7 @@ class Renderer {
         $("body").append(this.#templates.navbar({}));
     }
 
+
     renderAllServices(services) {
         $("main").empty();
         $("main").append(this.#templates.allServices({services}));
@@ -71,7 +79,7 @@ class Renderer {
         $("main").empty();
         $("main").append(this.#templates.admin(users));
     }
-    
+
     renderAllPart(parts) {
         $("main").empty();
         $("main").append(this.#templates.part({parts}));
