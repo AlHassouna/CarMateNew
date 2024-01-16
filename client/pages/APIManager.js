@@ -17,7 +17,15 @@ class APIManager {
       },
     });
   }
-
+  getAllParts() {
+    $.ajax({
+      url: "../../assets/parts.json",
+      async: false,
+      success: (parts) => {
+        this.#data = parts;
+      },
+    });
+  }
   getAllUsers() {
     $.ajax({
       url: "../../assets/users.json",

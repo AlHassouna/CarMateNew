@@ -1,7 +1,7 @@
 <article id="all-services-deck" class="c-flex">
   <h2 class="title">OUR SERVICES</h2>
   <ul class="all-services-deck__list">
-    {{#each services}}
+    {{#each services}}  
       <li
         class="service-minicard c-flex"
         onclick="showServiceDetails('{{@index}}')"
@@ -11,6 +11,7 @@
           alt="{{name}}"
           class="img"
         />
+        <p>{{name}}</p>
       </li>
     {{/each}}
   </ul>
