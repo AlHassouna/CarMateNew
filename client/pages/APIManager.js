@@ -28,6 +28,21 @@ class APIManager {
     });
   }
 
+  getTrackService(idx) {
+    if (!this.#data) {
+      $.ajax({
+        url: "/apiv1/services", 
+        async: false,
+        success: (services) => {
+          this.#data = services;
+        },
+      });
+    }
+    if (idx >= 0 && idx < this.#data.length) {
+      return this.#data[idx];
+    }
+}
+
   get data() {
     return this.#data;
   }

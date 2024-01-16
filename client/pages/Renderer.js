@@ -6,6 +6,7 @@ class Renderer {
     admin: null,
     allServices: null,
     serviceDetails: null,
+    trackService: null,
   };
 
   /* CONSTRUCTOR */
@@ -63,5 +64,10 @@ class Renderer {
   renderAllUsers(users) {
     $("main").empty();
     $("main").append(this.#templates.admin({ users }));
+  }
+
+  renderTrackService(service) {
+    $("main").empty();
+    $("main").append(this.#templates.trackService(service));
   }
 }
