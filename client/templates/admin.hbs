@@ -1,0 +1,12 @@
+<article id="admin-page">
+  <section class="all-users">
+    <ul>
+      {{#each}}
+        <li>
+          <div>{{name.first}} {{name.last}}</div>
+          <div>{{orders.length}} ative orders</div>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+</article>
