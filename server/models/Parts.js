@@ -1,19 +1,5 @@
 import { Schema, model } from "mongoose";
 
-const categories = [
-  "Brake System",
-  "Filters",
-  "Engine",
-  "Body",
-  "Suspension",
-  "Windscreen Cleaning System",
-  "Steering",
-  "Clutch",
-  "Electric System",
-  "Doors",
-  "Tyres",
-];
-
 const partSchema = new Schema(
   {
     name: { type: String, lowercase: true, required: true },
@@ -23,8 +9,8 @@ const partSchema = new Schema(
       type: String,
       lowercase: true,
       required: true,
-      enum: categories,
     },
+      currency:  { type: String, lowercase: true, required: true },
     cars: [{ type: Schema.Types.ObjectId, ref: "Car" }],
   },
   { timestamps: true }
