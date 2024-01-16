@@ -1,67 +1,71 @@
 class Renderer {
-  /* ATTRIBUTES */
-  #partials = {};
-  #templates = {
-    navbar: null,
-    admin: null,
-    allServices: null,
-    serviceDetails: null,
-  };
+    /* ATTRIBUTES */
+    #partials = {};
+    #templates = {
+        navbar: null,
+        admin: null,
+        allServices: null,
+        serviceDetails: null,
+    };
 
-  /* CONSTRUCTOR */
-  constructor() {
-    this.#compile();
-    this.#registerHelpers();
-    // this.#registerPartials();
-  }
-
-  /* PRIVATE */
-  #setActiveNavItem() {}
-  #registerHelpers() {}
-  #registerPartials() {
-    for (const key of Object.keys(this.#partials)) {
-      $.ajax({
-        url: `../../templates/${key}.hbs`,
-        dataType: "html",
-        async: false,
-        success: (source) => {
-          this.#partials[key] = Handlebars.registerPartial(key, source);
-        },
-      });
+    /* CONSTRUCTOR */
+    constructor() {
+        this.#compile();
+        this.#registerHelpers();
+        // this.#registerPartials();
     }
-  }
 
-  /* PUBLIC API */
-  #compile() {
-    for (const key of Object.keys(this.#templates)) {
-      $.ajax({
-        url: `../../templates/${key}.hbs`,
-        dataType: "html",
-        async: false,
-        success: (source) => {
-          this.#templates[key] = Handlebars.compile(source);
-        },
-      });
+    /* PRIVATE */
+    #setActiveNavItem() {
     }
-  }
 
-  renderNavBar() {
-    $("body").append(this.#templates.navbar({}));
-  }
+    #registerHelpers() {
+    }
 
-  renderAllServices(services) {
-    $("main").empty();
-    $("main").append(this.#templates.allServices({ services }));
-    // setActiveNavItem();
-  }
+    #registerPartials() {
+        for (const key of Object.keys(this.#partials)) {
+            $.ajax({
+                url: `../../templates/${key}.hbs`,
+                dataType: "html",
+                async: false,
+                success: (source) => {
+                    this.#partials[key] = Handlebars.registerPartial(key, source);
+                },
+            });
+        }
+    }
 
-  renderServiceDetails(service) {
-    $("main").empty();
-    $("main").append(this.#templates.serviceDetails(service));
-  }
+    /* PUBLIC API */
+    #compile() {
+        for (const key of Object.keys(this.#templates)) {
+            $.ajax({
+                url: `../../templates/${key}.hbs`,
+                dataType: "html",
+                async: false,
+                success: (source) => {
+                    this.#templates[key] = Handlebars.compile(source);
+                },
+            });
+        }
+    }
 
-  renderAllUsers(users) {
-    $("main").empty();
-    $("main").append(this.#templates.admin({ users }));
-  }
+    renderNavBar() {
+        $("body").append(this.#templates.navbar({}));
+    }
+
+    renderAllServices(services) {
+        $("main").empty();
+        $("main").append(this.#templates.allServices({services}));
+        // setActiveNavItem();
+    }
+
+    renderServiceDetails(service) {
+        $("main").empty();
+        $("main").append(this.#templates.serviceDetails(service));
+    }
+
+    renderAllUsers(users) {
+        $("main").empty();
+        $("main").append(this.#templates.admin(users));
+    }
 }
