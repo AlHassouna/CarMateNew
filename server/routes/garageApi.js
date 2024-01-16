@@ -9,15 +9,40 @@ import CartModel from '../models/Cart.js'
 import Cars from '../data/cars.json' with {type: "json"}
 import Services from '../data/services.json' with {type: "json"}
 import Parts from "../data/parts.json" with {type: "json"}
+import Users from '../data/users.json' with {type: "json"}
+
+router.get('/car', async (req, res) => {
+    try {
+        const car = await CarModel.find({})
+        res.send(car)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 router.get('/init', async (req, res) => {
     try {
         await CarModel.insertMany(Cars)
         await ServiceModel.insertMany(Services)
         await PartsModel.insertMany(Parts)
+        await UserModel.insertMany(Users)
         res.send('ok')
     } catch (error) {
         console.log(error)
+    }
+})
+
+router.delete('/deleteall', async (req, res) => {
+    console.log("in here")
+    try {
+        await CarModel.deleteMany({})
+        await ServiceModel.deleteMany({})
+        await PartsModel.deleteMany({})
+        await UserModel.deleteMany({})
+        await CartModel.deleteMany({})
+        res.send("All deleted")
+    } catch (err) {
+        console.log(err)
     }
 })
 router.get('/users', async (req, res) => {
