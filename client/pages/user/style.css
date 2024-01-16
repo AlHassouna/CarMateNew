@@ -17,21 +17,30 @@
   display: grid;
   padding: 1.5rem;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 .service-minicard {
   border-radius: 1rem;
   background-color: var(--grey-200);
-  padding: 1rem;
+  padding: 2rem;
+  font-size: 1.25rem;
   border: 1px solid var(--blue-dark);
   box-shadow: 0px 0px 5px var(--blue-dark);
   transition: var(--transition);
+  cursor: pointer;
+  flex-direction: column;
 }
 
 .service-minicard:hover {
-  padding: 0.5rem;
+  padding: 1.5rem;
+  font-size: 1.5rem;
   box-shadow: 0px 0px 10px 3px var(--blue-dark);
+}
+
+.service-minicard > span {
+  margin-top: 1rem;
+  text-align: center;
 }
 
 /* SERVICE DETAILS */

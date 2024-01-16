@@ -2,8 +2,8 @@ const apiManager = new APIManager();
 const renderer = new Renderer();
 renderer.renderNavBar();
 
-function showAllServices() {
-  apiManager.getAllServices();
+async function showAllServices() {
+  await apiManager.getAllServices();
   renderer.renderAllServices(apiManager.data);
 }
 
