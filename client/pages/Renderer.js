@@ -6,6 +6,8 @@ class Renderer {
     admin: null,
     allServices: null,
     serviceDetails: null,
+    part: null,
+    cart: null,
   };
 
   /* CONSTRUCTOR */
@@ -63,5 +65,14 @@ class Renderer {
   renderAllUsers(users) {
     $("main").empty();
     $("main").append(this.#templates.admin({ users }));
+  }
+
+  renderAllPart(parts) {
+    $("main").empty();
+    $("main").append(this.#templates.part({ parts }));
+  }
+  renderAllCart(carts) {
+    $("main").empty();
+    $("main").append(this.#templates.cart({ carts }));
   }
 }
