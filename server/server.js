@@ -1,31 +1,31 @@
 import * as dotenv from "dotenv";
+
 dotenv.config();
-import express from "express";
-const app = express();
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-import morgan from "morgan";
-import { connect } from "mongoose";
+import express from 'express'
+import garageApi from './routes/garageApi.js';
+import mongoose from 'mongoose'
+import path from "path";
+import {fileURLToPath} from 'url';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const app = express()
 
-app.use("/public", express.static(path.resolve(__dirname, "../client")));
-app.use("/public", express.static(path.resolve(__dirname, "../node_modules")));
-
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+const start = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+    } catch (error) {
+        console.log(error)
+    }
 }
-app.use(express.urlencoded({ extended: false }));
+start()
+const _dirname = path.dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.join(_dirname, '../client')));
+app.use(express.static(path.join(_dirname, '../node_modules')));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use('/api/v1', garageApi)
 
-const PORT = process.env.PORT || 3000;
-try {
-  await connect(`${process.env.MONGO_URL}`);
-  console.log("connected to DB successfully ...");
-  app.listen(PORT, () => {
-    console.log(`server running on PORT ${PORT} `);
-  });
-} catch (error) {
-  console.log(error);
-  process.exit(1);
-}
+const port = 4200
+app.listen(port, function () {
+    console.log(`Running on port ${port}`)
+})
+
