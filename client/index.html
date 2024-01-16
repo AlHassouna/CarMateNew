@@ -12,11 +12,22 @@
     <link rel="stylesheet" href="style.css" />
     <script src="./jquery/dist/jquery.js" defer></script>
     <script src="./handlebars/dist/handlebars.js" defer></script>
-    <script src="./utils/constants.js" defer></script>
-    <script src="APIManager.js" defer></script>
-    <script src="Renderer.js" defer></script>
-    <script src="main.js" defer></script>
-    <title>Weather App</title>
+    <title>Car Mate</title>
   </head>
-  <body></body>
+  <body class="body c-flex">
+    <main>
+      <section class="img-title">
+        <img src="./assets/images/home-img.svg" alt="Home Image" class="img" />
+        <h3 class="title">Car Mate!</h3>
+      </section>
+      <section class="home-btns-group c-flex">
+        <button class="btn home-btn">
+          <a href="./pages/admin/index.html">Admin</a>
+        </button>
+        <button class="btn home-btn">
+          <a href="./pages/user/index.html">User</a>
+        </button>
+      </section>
+    </main>
+  </body>
 </html>
