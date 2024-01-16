@@ -5,6 +5,7 @@ class Renderer {
     navbar: null,
     admin: null,
     allServices: null,
+    addService: null,
     serviceDetails: null,
     part: null,
     cart: null,
@@ -19,7 +20,14 @@ class Renderer {
 
   /* PRIVATE */
   #setActiveNavItem() {}
-  #registerHelpers() {}
+  #registerHelpers() {
+    Handlebars.registerHelper("multiply", (num1, num2) =>
+      (num1 * num2).toFixed(2)
+    );
+    Handlebars.registerHelper("divide", (num1, num2) =>
+      (num1 / num2).toFixed(5)
+    );
+  }
   #registerPartials() {
     for (const key of Object.keys(this.#partials)) {
       $.ajax({
@@ -60,6 +68,11 @@ class Renderer {
   renderServiceDetails(service) {
     $("main").empty();
     $("main").append(this.#templates.serviceDetails(service));
+  }
+
+  renderAddService(service) {
+    $("main").empty();
+    $("main").append(this.#templates.addService(service));
   }
 
   renderAllUsers(users) {
