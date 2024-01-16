@@ -191,7 +191,7 @@ p {
   display: flex;
   align-items: center;
 }
-input[type="text"] {
+.search-container input[type="text"] {
   width: 80%;
   box-sizing: border-box;
   border: 2px solid #ccc;
