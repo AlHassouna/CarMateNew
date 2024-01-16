@@ -4,9 +4,13 @@ import mongoose from 'mongoose'
 import path from "path";
 import {fileURLToPath} from 'url';
 const app = express()
-mongoose.connect("mongodb://127.0.0.1:27017/garage", {
-    useNewUrlParser: true,
-}).catch((err) => console.log(err))
+const uri = "mongodb+srv://CarMate-DB:Aa123456@carmate.mamrf2g.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB!');
+});
 
 const _dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(_dirname, '../client')));

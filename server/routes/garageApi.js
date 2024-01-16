@@ -10,6 +10,16 @@ import Cars from '../data/cars.json' with {type: "json"}
 import Services from '../data/services.json' with {type: "json"}
 import Parts from "../data/parts.json" with {type: "json"}
 
+router.get('/car', async (req, res) => {
+    try {
+        const car = await CarModel.find({})
+        console.log(car)
+        res.send(car)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.get('/init', async (req, res) => {
     try {
         await CarModel.insertMany(Cars)
