@@ -247,6 +247,7 @@ button:disabled {
 main {
   flex-grow: 1;
   background-color: var(--yellow-dark);
+  overflow-y: scroll;
 }
 
 /* NAVBAR */
@@ -282,4 +283,36 @@ main {
 
 .nav-btn > a {
   color: white;
+}
+/* Add styles for the search container */
+.search-container {
+  position: relative;
+  max-width: 300px; /* Adjust the width as needed */
+  margin: 20px;
+}
+
+/* Style for the search input */
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Style for the search icon */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Add some transition for a smoother effect */
+.search-container:hover #searchInput {
+  border-color: #3498db;
 }
