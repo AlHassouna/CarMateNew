@@ -48,12 +48,10 @@ class APIManager {
     this.cartData.push(part);
   }
 
-
-  async getUser(){
-    const user = await $.ajax("http://localhost:4200/api/v1/services");
- }
-
-  
+  async getUser() {
+    const user = (await $.ajax("http://localhost:4200/api/v1/users"))[1];
+    console.log(user);
+  }
 
   getCartData() {
     return this.cartData;

@@ -36,6 +36,6 @@ function showAllCart() {
   renderer.renderAllCart(renderer.getCartData());
 }
 async function showMyProfile() {
-  await apiManager.getUser()
-  renderer.renderMyProfile(apiManager.data)
+  await apiManager.getUser();
+  // renderer.renderMyProfile(apiManager.data)
 }
