@@ -7,20 +7,29 @@ async function showAllServices() {
     renderer.renderAllServices(apiManager.data);
 }
 
-function showAllUsers() {
-    apiManager.getAllUsers();
+async function showAllUsers() {
+    await apiManager.getAllUsers();
     renderer.renderAllUsers(apiManager.data);
 }
 
-function showAllPart() {
-    apiManager.getAllParts();
-    renderer.renderAllPart(apiManager.data);
+async function showOrderedServiceDetails(idx, carImg) {
+    const {date} = apiManager.data;
+    const service = apiManager.data.carServices[idx];
+    await showMyTracking({date, carImg, ...service})
 }
+
+async function showMyTracking(service) {
+    renderer.renderTrackService(service);
+}
+
 
 function navigateToCart() {
     showAllCart();
-    //  renderer.renderAllCart(apiManager.data);
-    //  window.location.href = "../templates/cart.hbs";
+}
+
+async function showAllPart() {
+    await apiManager.getAllParts();
+    renderer.renderAllPart(apiManager.data);
 }
 
 function AddToCart() {
@@ -30,6 +39,19 @@ function AddToCart() {
 
 function showAllCart() {
     renderer.renderAllCart(renderer.getCartData());
+}
+
+async function showMyProfile() {
+    await apiManager.getUser();
+    renderer.renderMyProfile(apiManager.data);
+}
+
+async function showMyOrder(idx) {
+    const userID = apiManager.data._id;
+    const orderId = apiManager.data.orders[idx]._id;
+    const carImg = apiManager.data.car.image;
+    await apiManager.getOrder(orderId); //populated order
+    renderer.renderMyOrder({userID, carImg, ...apiManager.data});
 }
 
 function searchByPartName() {
@@ -47,10 +69,10 @@ function searchByPartName() {
     }
 }
 
-function filterByCategory() {
+async function filterByCategory() {
     let selectedCategory = document.getElementById("categoryFilter").value;
     if (selectedCategory === "All Categories") {
-        showAllPart();
+        await showAllPart();
         return;
     }
     apiManager.filterPartsByCategory(selectedCategory);

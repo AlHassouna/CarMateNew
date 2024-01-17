@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 
 class BaseRouter {
     constructor(model) {
@@ -13,7 +13,7 @@ class BaseRouter {
             res.send(items);
         } catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send("Internal Server Error");
         }
     }
 
@@ -25,7 +25,7 @@ class BaseRouter {
             res.send(items);
         } catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send("Internal Server Error");
         }
     }
 
@@ -36,26 +36,26 @@ class BaseRouter {
             res.send(item);
         } catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send("Internal Server Error");
         }
     }
 
     async getMany(req, res) {
         const category = req.params.category;
         try {
-            const parts = await this.model.find({category: category}).populate('car');
-            res.send(parts);
+            const items = await this.model.find({category: category});
+            res.send(items);
         } catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send("Internal Server Error");
         }
     }
 
     initializeRoutes() {
-        this.router.get('/', this.getAll.bind(this));
-        this.router.post('/', this.create.bind(this));
-        this.router.get('/:id', this.getOne.bind(this));
-        this.router.get('/category/:category', this.getMany.bind(this));
+        this.router.get("/", this.getAll.bind(this));
+        this.router.post("/", this.create.bind(this));
+        this.router.get("/:id", this.getOne.bind(this));
+        this.router.get("/category/:category", this.getMany.bind(this))
     }
 }
 
