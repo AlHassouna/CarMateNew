@@ -12,7 +12,7 @@ class ServiceRouter extends BaseRouter {
             res.send(services);
         } catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send("Internal Server Error");
         }
     }
 
@@ -20,22 +20,23 @@ class ServiceRouter extends BaseRouter {
         const newService = req.body;
         try {
             await this.model.create(newService);
-            const services = await this.model.find({}).populate('car');
+            const services = await this.model.find({});
             res.send(services);
         } catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send("Internal Server Error");
         }
     }
 
     async getOne(req, res) {
+        console.log("in service")
         const id = req.params.id;
         try {
             const service = await this.model.findById(id);
             res.send(service);
         } catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send("Internal Server Error");
         }
     }
 }

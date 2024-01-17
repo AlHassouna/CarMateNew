@@ -1,5 +1,6 @@
 class Renderer {
     /* ATTRIBUTES */
+
     #partials = {};
     #templates = {
         navbar: null,
@@ -7,6 +8,8 @@ class Renderer {
         allServices: null,
         addService: null,
         serviceDetails: null,
+        myProfile: null,
+        myOrder: null,
         part: null,
         cart: null,
         trackService: null,
@@ -16,6 +19,7 @@ class Renderer {
     constructor() {
         this.#compile();
         this.#registerHelpers();
+        this.cartData = [];
         // this.#registerPartials();
     }
 
@@ -30,6 +34,7 @@ class Renderer {
         Handlebars.registerHelper("divide", (num1, num2) =>
             (num1 / num2).toFixed(5)
         );
+        Handlebars.registerHelper("slice", (id) => id.slice(-5));
     }
 
     #registerPartials() {
@@ -79,6 +84,16 @@ class Renderer {
         $("main").append(this.#templates.addService(service));
     }
 
+    renderMyProfile(profile) {
+        $("main").empty();
+        $("main").append(this.#templates.myProfile(profile));
+    }
+
+    renderMyOrder(order) {
+        $("main").empty();
+        $("main").append(this.#templates.myOrder(order));
+    }
+
     renderAllUsers(users) {
         $("main").empty();
         $("main").append(this.#templates.admin(users));
@@ -87,6 +102,23 @@ class Renderer {
     renderAllPart(parts) {
         $("main").empty();
         $("main").append(this.#templates.part({parts}));
+
+        const renderer = this; // Save a reference to the current renderer instance
+
+        $(".add-to-cart-button").on("click", function () {
+            const partIndex = $(this).data("part-index");
+            const selectedPart = parts[partIndex];
+            renderer.addToCart(selectedPart); // Use the saved reference to call addToCart
+            renderer.renderAllCart(renderer.getCartData());
+        });
+    }
+
+    addToCart(part) {
+        this.cartData.push(part);
+    }
+
+    getCartData() {
+        return this.cartData;
     }
 
     renderAllCart(carts) {
@@ -98,5 +130,10 @@ class Renderer {
         $("main").empty();
         $("main").append(this.#templates.trackService(service));
         colorCircle(service.status);
+    }
+
+    renderAllorders(orders) {
+        $("main").empty();
+        $("main").append(this.#templates.orders({orders}));
     }
 }
