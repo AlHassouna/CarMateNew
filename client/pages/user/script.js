@@ -9,6 +9,7 @@ function addService(idx) {
     hours: getAvailableHours(),
     discount: 6.5,
     ...apiManager.data[idx],
+    total: calcTotal(apiManager.data[idx].cost, 1, 6.5),
   });
 }
 
@@ -62,4 +63,14 @@ function getAvailableHours() {
 function addServiceToCart(event) {
   event.preventDefault();
   console.log($("form").serializeArray());
+}
+
+function calcTotal(cost, amount, discount) {
+  const origin = cost * amount;
+  return origin - origin * (discount / 100);
+}
+
+function showOrderedServiceDetails(idx) {
+  const service = apiManager.data.carServices[idx];
+  console.log(service);
 }
