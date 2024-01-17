@@ -3,24 +3,27 @@ const renderer = new Renderer();
 renderer.renderNavBar();
 
 function showAllServices() {
-  apiManager.getAllServices();
-  renderer.renderAllServices(apiManager.data);
+    apiManager.getAllServices();
+    renderer.renderAllServices(apiManager.data);
 }
 
 function showAllUsers() {
-  apiManager.getAllUsers();
-  renderer.renderAllUsers(apiManager.data);
+    apiManager.getAllUsers();
+    renderer.renderAllUsers(apiManager.data);
 }
 
-function showMyServices(){
-  const service = {
-    name: "Car Maintenance",
-    cost: 1250,
-    currency: "₪",
-    image: "https://shorturl.at/kGJK4",
-    status: "ready"
-  };
-  // apiManager.getTrackService();
-  renderer.renderTrackService(service);
+function showAllPart() {
+    apiManager.getAllParts();
+    renderer.renderAllPart(apiManager.data);
 }
 
+function showMyTracking() {
+    // const id = $("#track-id").val();
+    apiManager.getTrackService("65a6fe043eee2d0d3e4b1c69");
+    renderer.renderTrackService(apiManager.data);
+}
+
+function navigateToCart() {
+    renderer.renderAllCart(apiManager.data);
+    //  window.location.href = "../templates/cart.hbs";
+}

@@ -1,12 +1,19 @@
 [
   {
-    "name": { "first": "Muaz", "last": "Abdin" },
+    "name": {
+      "first": "Muaz",
+      "last": "Abdin"
+    },
     "mobile": "058-7741171",
     "orders": [
       {
         "carParts": [],
         "carServices": [
-          { "name": "Car Maintenance", "cost": 1250, "currency": "₪" }
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          }
         ],
         "address": {},
         "date": "",
@@ -16,7 +23,11 @@
       {
         "carParts": [],
         "carServices": [
-          { "name": "Car Maintenance", "cost": 1250, "currency": "₪" }
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          }
         ],
         "address": {},
         "date": "",
@@ -26,13 +37,20 @@
     ]
   },
   {
-    "name": { "first": "Hassan", "last": "Hassonah" },
+    "name": {
+      "first": "Hassan",
+      "last": "Hassonah"
+    },
     "mobile": "058-7741171",
     "orders": [
       {
         "carParts": [],
         "carServices": [
-          { "name": "Car Maintenance", "cost": 1250, "currency": "₪" }
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          }
         ],
         "address": {},
         "date": "",
@@ -42,13 +60,44 @@
     ]
   },
   {
-    "name": { "first": "Raed", "last": "Awwad" },
+    "name": {
+      "first": "Raed",
+      "last": "Awwad"
+    },
     "mobile": "058-7741171",
     "orders": [
       {
         "carParts": [],
         "carServices": [
-          { "name": "Car Maintenance", "cost": 1250, "currency": "₪" }
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          },
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          },
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          }
+        ],
+        "address": {},
+        "date": "",
+        "total": "3750 ₪",
+        "status": "delivered"
+      },
+      {
+        "carParts": [],
+        "carServices": [
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          }
         ],
         "address": {},
         "date": "",
@@ -58,17 +107,11 @@
       {
         "carParts": [],
         "carServices": [
-          { "name": "Car Maintenance", "cost": 1250, "currency": "₪" }
-        ],
-        "address": {},
-        "date": "",
-        "total": "1250 ₪",
-        "status": "delivered"
-      },
-      {
-        "carParts": [],
-        "carServices": [
-          { "name": "Car Maintenance", "cost": 1250, "currency": "₪" }
+          {
+            "name": "Car Maintenance",
+            "cost": 1250,
+            "currency": "₪"
+          }
         ],
         "address": {},
         "date": "",

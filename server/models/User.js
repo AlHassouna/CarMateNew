@@ -1,14 +1,14 @@
 import { Schema, model } from "mongoose";
 
-const useCarSchema = new Schema({
+const userCar = {
   car: { type: Schema.Types.ObjectId, ref: "Car" },
-  LPN: { type: Number, required: true },
-});
+  LPN: { type: String, required: true },
+};
 
-const addressSchema = new Schema({
+const address = {
   city: { type: String, lowercase: true, required: true },
   street: { type: String, lowercase: true, required: true },
-});
+};
 
 const userSchema = new Schema(
   {
@@ -18,9 +18,10 @@ const userSchema = new Schema(
     },
     password: { type: String, required: true },
     email: { type: String, lowercase: true, required: true, unique: true },
-    moblie: { type: Number, required: true },
-    address: { type: addressSchema, default: {} },
-    car: { type: useCarSchema, default: {} },
+    mobile: { type: String, required: true },
+    role: { type: String, lowercase: true, required: true, default: "user" },
+    address: address,
+    car: { type: userCar, default: { car: null, LPN: "00000000" } },
     orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
   },
   { timestamps: true }

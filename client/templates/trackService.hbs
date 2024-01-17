@@ -1,23 +1,61 @@
-<article id="track_service" class="c-flex">
-  <div class="content-container">
-    <div class="center-content">
-      <h2 class="title">Track Order</h2>
-    </div>
-    <div class="braa">
-      <div class="right-content">
-        <h3>Basic Service</h3>
-        <p>Booking ID: 201232321</p>
-        <h3>Type: Car Maintenance</h3>
-        <h3>Status: ready</h3>
-      </div>
-      <div class="left-content">
-        <div class="img-title">
-          <img src="https://shorturl.at/kGJK4" alt="Car Maintenance" class="img">
+<article id="track_service" class="c-flex mt-1 p-8">
+    <div class="max-w-sm w-full lg:max-w-full lg:flex">
+        <div class=" border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex  justify-between leading-normal">
+            <div>
+                <div class="mb-8">
+                    <div class="text-gray-900 font-bold text-xl mb-2">{{this.item.name}}</div>
+                    <p class="text-gray-700 text-base">Booking ID : 123456</p>
+                </div>
+                <div class="mb-8">
+                    <div class="text-gray-900 font-bold text-xl mb-2">Date</div>
+                    <p class="text-gray-700 text-base">{{this.item.createdAt}}</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <img class="w-10 h-10 rounded-full mr-4" src="{{this.item.image}}" alt="{{this.item.name}}">
+                <!--                <div class="text-sm">-->
+                <!--                    <p class="text-gray-900 leading-none">Jonathan Reinink</p>-->
+                <!--                    <p class="text-gray-600">Aug 18</p>-->
+                <!--                </div>-->
+            </div>
         </div>
-        <h3>Pick-up Time: 9:10</h3>
-      </div>
+
+        <div class="flex mt-2">
+            <div class="flex flex-col justify-between align-center w-25">
+                <!-- Step 1: New Parts Arrived -->
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    <p class="mt-1 text-xs">New Parts Arrived</p>
+                </div>
+
+                <!-- Vertical Line 1 -->
+                <div class="w-1 h-8 bg-gray-300 mx-3"></div>
+
+                <!-- Step 2: Installation (In Progress) -->
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full"></div>
+                    <p class="mt-1 text-xs">Installation</p>
+                </div>
+
+                <!-- Vertical Line 2 -->
+                <div class="w-1 h-8 bg-gray-300 mx-3"></div>
+
+                <!-- Step 3: Final Inspection -->
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    <p class="mt-1 text-xs">Final Inspection</p>
+                </div>
+
+                <!-- Vertical Line 3 -->
+                <div class="w-1 h-8 bg-gray-300 mx-3"></div>
+
+                <!-- Step 4: Delivered -->
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    <p class="mt-1 text-xs">Delivered</p>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-  </div>
 </article>
+
