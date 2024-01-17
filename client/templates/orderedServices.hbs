@@ -1,15 +1,11 @@
 
 <div class="header">
     <section class="all-users">
-    <ul>
       {{#each}}
-        <li>
           <div>{{name.first}} {{name.last}}</div>
           <div>{{image}}</div>
-        </li>
       {{/each}}
-    </ul>
-  </section>
+    </section>
     <div class="orderButtens">
         <button class="upcoming" onclick="upComing()">Up Coming</button>
         <button class="past" onclick="past()">Past</button>

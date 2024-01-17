@@ -49,16 +49,8 @@ class APIManager {
   }
 
 
-  getMyServices() {
-    const apiUrl = `.../services/${userId}`;
-
-  $.ajax({
-    url: apiUrl,
-    async: false,
-    success: (orders) => {
-        this.#data = orders;
-    },
-  });
+  async getUser(){
+    const user = await $.ajax("http://localhost:4200/api/v1/services");
  }
 
   
@@ -66,7 +58,7 @@ class APIManager {
   getCartData() {
     return this.cartData;
   }
-  
+
   get data() {
     return this.#data;
   }

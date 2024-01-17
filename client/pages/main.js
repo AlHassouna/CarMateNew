@@ -20,7 +20,6 @@ function navigateToCart() {
   //  renderer.renderAllCart(apiManager.data);
   //  window.location.href = "../templates/cart.hbs";
 }
-<<<<<<< HEAD
 function showAllPart() {
   apiManager.getAllParts();
   renderer.renderAllPart(apiManager.data);
@@ -29,7 +28,6 @@ function showcomplited() {
   apiManager.getMyServices();
   renderer.renderAllorders(apiManager.data);
 }
-=======
 function AddToCart() {
   const partIndex = $(event.target).data("part-index");
   apiManager.addToCart(partIndex);
@@ -37,4 +35,7 @@ function AddToCart() {
 function showAllCart() {
   renderer.renderAllCart(renderer.getCartData());
 }
->>>>>>> develop
+async function showMyProfile() {
+  await apiManager.getUser()
+  renderer.renderMyProfile(apiManager.data)
+}
