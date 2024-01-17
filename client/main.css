@@ -94,7 +94,7 @@ html {
 
 body {
   background: var(--background-color);
-  color: var(--text-color);
+  color: var(--black);
   font-weight: 400;
   line-height: 1;
   flex-grow: 1;
@@ -247,7 +247,7 @@ button:disabled {
 main {
   overflow-y: scroll;
   flex-grow: 1;
-  background-color: var(--yellow-dark);
+  background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
   overflow-y: scroll;
 }
 

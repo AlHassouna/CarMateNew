@@ -51,7 +51,7 @@
 .details-header {
   justify-content: flex-start;
   gap: 0.5rem;
-  color: var(--blue-dark);
+  color: var(--black);
   font-weight: 600;
   margin-bottom: 0.75rem;
   text-shadow: 0px 0px 2px white;
@@ -112,7 +112,7 @@
 
 .cost {
   gap: 1rem;
-  color: var(--yellow-dark);
+  color: var(--main-font);
 }
 
 .add-btn {
