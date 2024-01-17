@@ -1,7 +1,5 @@
 class Renderer {
     /* ATTRIBUTES */
-
-    #partials = {};
     #templates = {
         navbar: null,
         admin: null,
@@ -14,18 +12,14 @@ class Renderer {
         cart: null,
         trackService: null,
     };
+
     /* CONSTRUCTOR */
     constructor() {
         this.#compile();
         this.#registerHelpers();
         this.cartData = [];
-        // this.#registerPartials();
     }
 
-    /* PRIVATE */
-    #setActiveNavItem() {
-    }
-    
     #registerHelpers() {
         Handlebars.registerHelper("multiply", (num1, num2) =>
             (num1 * num2).toFixed(2)
@@ -34,19 +28,6 @@ class Renderer {
             (num1 / num2).toFixed(5)
         );
         Handlebars.registerHelper("slice", (id) => id.slice(-5));
-    }
-
-    #registerPartials() {
-        for (const key of Object.keys(this.#partials)) {
-            $.ajax({
-                url: `../../templates/${key}.hbs`,
-                dataType: "html",
-                async: false,
-                success: (source) => {
-                    this.#partials[key] = Handlebars.registerPartial(key, source);
-                },
-            });
-        }
     }
 
     /* PUBLIC API */
@@ -70,7 +51,6 @@ class Renderer {
     renderAllServices(services) {
         $("main").empty();
         $("main").append(this.#templates.allServices({services}));
-        // setActiveNavItem();
     }
 
     renderServiceDetails(service) {
@@ -92,6 +72,7 @@ class Renderer {
         $("main").empty();
         $("main").append(this.#templates.myOrder(order));
     }
+
     renderAllUsers(users) {
         $("main").empty();
         $("main").append(this.#templates.admin(users));
@@ -125,14 +106,13 @@ class Renderer {
         $("main").append(this.#templates.cart({carts}));
     }
 
-removeFromCart(partName) {
-    const partIndex = cartItems.findIndex((item) => item.name === partName);
-    if (partIndex !== -1) {
-        cartItems.splice(partIndex, 1);
-
-        updateCart();
+    removeFromCart(partName) {
+        const partIndex = cartItems.findIndex((item) => item.name === partName);
+        if (partIndex !== -1) {
+            cartItems.splice(partIndex, 1);
+            updateCart();
+        }
     }
-}
 
     renderTrackService(service) {
         $("main").empty();
@@ -178,7 +158,6 @@ removeFromCart(partName) {
         cartItems.forEach((item) => {
             const cartItemElement = document.createElement("div");
             cartItemElement.className = "Cart-Item";
-
             cartContainer.appendChild(cartItemElement);
         });
     }

@@ -39,9 +39,15 @@ class APIManager {
         this.#data = allParts;
     }
 
-    async getAllUsers() {
-        const allUsers = await $.ajax("/api/v1/users");
-        this.#data = allUsers;
+
+    getAllUsers() {
+        $.ajax({
+            url: "/api/v1/users",
+            async: false,
+            success: (users) => {
+                this.#data = users;
+            },
+        });
     }
 
     addToCart(part) {

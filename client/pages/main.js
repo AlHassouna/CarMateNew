@@ -1,6 +1,5 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
-renderer.renderNavBar();
 
 async function showAllServices() {
     await apiManager.getAllServices();
@@ -12,9 +11,15 @@ function showAllUsers() {
     renderer.renderAllUsers(apiManager.data);
 }
 
-function showAllPart() {
-    apiManager.getAllParts();
+async function showAllPart() {
+    await apiManager.getAllParts();
     renderer.renderAllPart(apiManager.data);
+}
+
+async function showOrderedServiceDetails(idx, carImg) {
+    const {date} = apiManager.data;
+    const service = apiManager.data.carServices[idx];
+    await showMyTracking({date, carImg, ...service})
 }
 
 async function showMyTracking(service) {
@@ -24,8 +29,6 @@ async function showMyTracking(service) {
 
 function navigateToCart() {
     showAllCart();
-    //  renderer.renderAllCart(apiManager.data);
-    //  window.location.href = "../templates/cart.hbs";
 }
 
 function AddToCart() {
@@ -64,21 +67,24 @@ function searchByPartName() {
         }
     }
 }
+
 function removeFromCart(itemName) {
     cartItems = cartItems.filter((item) => item.name !== itemName);
     renderer.renderCart(); // Update the cart UI
     console.log(`${itemName} removed from the cart`);
 }
-function filterByCategory() {
+
+async function filterByCategory() {
     let selectedCategory = document.getElementById("categoryFilter").value;
     if (selectedCategory === "All Categories") {
-        showAllPart();
+        await showAllPart();
         return;
     }
     apiManager.filterPartsByCategory(selectedCategory);
     renderer.renderAllPart(apiManager.data);
     $("#categoryFilter").val(selectedCategory);
 }
+
 function calculateSubtotal() {
-  return cartItems.reduce((total, item) => total + item.cost, 0);
+    return cartItems.reduce((total, item) => total + item.cost, 0);
 }
