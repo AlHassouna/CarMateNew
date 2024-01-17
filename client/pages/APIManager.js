@@ -1,22 +1,31 @@
 class APIManager {
   /* ATTRIBUTES */
   #data = [];
-
+  cartData = [];
   /* CONSTRUCTOR */
-  constructor() {}
+  constructor() {
+    this.cartData = [];
+  }
 
   /* PRIVATE */
 
   /* PUBLIC API */
-  getAllServices() {
-    $.ajax({
-      url: "../../assets/services.json",
-      async: false,
-      success: (services) => {
-        this.#data = services;
-      },
+  async getAllServices() {
+    const allServices = await $.ajax("http://localhost:4200/api/v1/services");
+    this.#data = allServices.map((service) => {
+      const { id, ...details } = service.details;
+      return {
+        _id: service._id.slice(-5),
+        name: service.name,
+        cost: service.cost,
+        currency: service.currency,
+        image: service.image,
+        details: details,
+        servicesIncluded: service.servicesIncluded,
+      };
     });
   }
+
   getAllParts() {
     $.ajax({
       url: "../../assets/parts.json",
@@ -35,6 +44,10 @@ class APIManager {
       },
     });
   }
+  addToCart(part) {
+    this.cartData.push(part);
+  }
+
 
   getMyServices() {
     const apiUrl = `.../services/${userId}`;
@@ -50,6 +63,10 @@ class APIManager {
 
   
 
+  getCartData() {
+    return this.cartData;
+  }
+  
   get data() {
     return this.#data;
   }

@@ -1,4 +1,35 @@
 <article>
-<h1>aaaaaa</h1>
+  <div class="cart">
+    <div class="Cart-Container">
+      <div class="Headers">
+        <h3 class="Heading">Shopping Cart</h3>
+        <i class="uil uil-trash-alt" style="color:red"></i>
+      </div>
+      <div class="Cart-Items">
+        {{#each carts}}
+        <div class="Cart-Item">
+          <div class="image-box">
+            <img src="{{image}}" alt="{{name}}">
+          </div>
+          <div class="title">{{name}}</div>
+          <div class="about">
+            <p class="price">{{cost}}{{currency}}</p>
+          </div>
+          <div class="remove">
+            <i class="uil uil-trash-alt"></i>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <hr> 
+ <div class="checkout">
+ <div class="total">
 
+    <div class="Subtotal">Sub-Total: {{totalCost}}{{currency}} ({{totalItems}} items)</div>
+
+ <button class="button">Checkout</button>
+ </div>
+    </div>
+  </div>
+  </div>
 </article>

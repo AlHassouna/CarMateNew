@@ -2,8 +2,8 @@ const apiManager = new APIManager();
 const renderer = new Renderer();
 renderer.renderNavBar();
 
-function showAllServices() {
-  apiManager.getAllServices();
+async function showAllServices() {
+  await apiManager.getAllServices();
   renderer.renderAllServices(apiManager.data);
 }
 
@@ -16,9 +16,11 @@ function showAllPart() {
   renderer.renderAllPart(apiManager.data);
 }
 function navigateToCart() {
-  renderer.renderAllCart(apiManager.data);
+  showAllCart();
+  //  renderer.renderAllCart(apiManager.data);
   //  window.location.href = "../templates/cart.hbs";
 }
+<<<<<<< HEAD
 function showAllPart() {
   apiManager.getAllParts();
   renderer.renderAllPart(apiManager.data);
@@ -27,3 +29,12 @@ function showcomplited() {
   apiManager.getMyServices();
   renderer.renderAllorders(apiManager.data);
 }
+=======
+function AddToCart() {
+  const partIndex = $(event.target).data("part-index");
+  apiManager.addToCart(partIndex);
+}
+function showAllCart() {
+  renderer.renderAllCart(renderer.getCartData());
+}
+>>>>>>> develop

@@ -1,25 +1,25 @@
-
-<div class="header">
-    <h1>Car Parts Market</h1>
-        </div>
-    <div class="search-container">
+<article id="all-parts" class="c-flex">
+  <div class="parts">
+    <div class="header">
+      <h1>Car Parts Market</h1>
+      <div class="search-container">
         <input type="text" name="search" placeholder="Search..">
         <i class="uil uil-shopping-cart-alt shopping-cart-icon" onclick="navigateToCart()"></i>
+      </div>
+    </div>
 
-</div>
-  <article id="all-parts" class="c-flex">
-
-
-    {{#each parts}}
-        <li class="part-minicard c-flex" onclick="showPartDetails('{{@index}}')">
-
-        <div class="part">
+    <div class="parts-container">
+      {{#each parts}}
+        <div class="part-minicard">
+          <div class="part">
             <img src="{{image}}" alt="{{name}}">
             <h2>{{name}}</h2>
-            <p>Category: {{categorey}}</p>
-                <p>Cost: <span class="blue-text">{{cost}}{{currency}}</span></p>
-                <button class="add-to-cart-button" data-part-index="{{@index}}" onclick="AddToCart()">Add to Cart</button>
+            <p>Category: {{category}}</p>
+            <p>Cost: <span class="blue-text">{{cost}}{{currency}}</span></p>
+            <button class="add-to-cart-button" data-part-index="{{@index}}" onclick="AddToCart()">Add to Cart</button>
+          </div>
         </div>
-        </li>
-    {{/each}}
+      {{/each}}
+    </div>
+  </div>
 </article>
