@@ -1,5 +1,6 @@
 class Renderer {
   /* ATTRIBUTES */
+
   #partials = {};
   #templates = {
     navbar: null,
@@ -15,6 +16,7 @@ class Renderer {
   constructor() {
     this.#compile();
     this.#registerHelpers();
+    this.cartData = [];
     // this.#registerPartials();
   }
 
@@ -85,6 +87,23 @@ class Renderer {
   renderAllPart(parts) {
     $("main").empty();
     $("main").append(this.#templates.part({ parts }));
+
+    const renderer = this; // Save a reference to the current renderer instance
+
+    $(".add-to-cart-button").on("click", function () {
+      const partIndex = $(this).data("part-index");
+      const selectedPart = parts[partIndex];
+      renderer.addToCart(selectedPart); // Use the saved reference to call addToCart
+      renderer.renderAllCart(renderer.getCartData());
+    });
+  }
+
+  addToCart(part) {
+    this.cartData.push(part);
+  }
+
+  getCartData() {
+    return this.cartData;
   }
 
   renderAllCart(carts) {
