@@ -97,5 +97,6 @@ class Renderer {
     renderTrackService(service) {
         $("main").empty();
         $("main").append(this.#templates.trackService(service));
+        colorCircle(service.status);
     }
 }
