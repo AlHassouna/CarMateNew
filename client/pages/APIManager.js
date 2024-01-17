@@ -48,10 +48,20 @@ class APIManager {
     this.cartData.push(part);
   }
 
-  async getUser() {
-    const user = (await $.ajax("http://localhost:4200/api/v1/users"))[1];
-    console.log(user);
-  }
+  async getUser(){
+  try{
+    const userData = (await $.ajax("http://localhost:4200/api/v1/users"))[1];
+    const {__v,_id,updatedAt,role,password,...rest} = userData
+    const objectCar = rest.car.car
+    const {make,model,engine}= objectCar
+    console.log(make,model,engine)
+    const finalObject = {...rest,car : {make,model,engine}}
+   console.log(finalObject);
+   }catch (error) {
+    console.error("Error fetching user data:", error);
+   }
+}
+
 
   getCartData() {
     return this.cartData;
