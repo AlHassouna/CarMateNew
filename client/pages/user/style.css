@@ -150,6 +150,15 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.btnCart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #e3f0ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .h1TitleParts {
   margin: 0;
   color: #000;
@@ -225,7 +234,6 @@ p {
 .search-container {
   display: flex;
   align-items: center;
-  margin-top: 10px;
 }
 
 .search-icon {
@@ -240,10 +248,11 @@ p {
   color: #777;
 }
 .filter-icon {
-  right: 50px;
+  margin-right: 1ren;
 }
 #searchInput {
-  width: 350px;
+  width: 180px;
+  margin-right: 10px;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
@@ -257,6 +266,42 @@ p {
   transform: translateY(-50%);
   color: #000;
   font-size: 24px;
+}
+#categoryFilter {
+  padding: 8px;
+  width: 150px;
+  height: 40px;
+  margin-right: 1px;
+  margin-left: -20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+  transition: border-color 0.3s ease-in-out;
+}
+
+#categoryFilter:hover,
+#categoryFilter:focus {
+  border-color: #007bff;
+}
+
+/* Optional: Add an arrow icon to the right */
+#categoryFilter::after {
+  content: "\25BC"; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* Optional: Style the options */
+#categoryFilter option {
+  padding: 10px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
 }
 
 /*CART CSS*/
@@ -406,8 +451,10 @@ p {
   font-weight: 600;
 }
 
+.select-container,
 .input-container {
-  position: relative;
+  display: inline-block;
+  vertical-align: middle; /* Aligns elements vertically in the middle */
 }
 
 .form-fs input {

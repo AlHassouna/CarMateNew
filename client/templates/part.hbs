@@ -9,8 +9,25 @@
   <div class="parts">
     <div class="header">
       <div class="search-container">
-        <i class="uil uil-list-ul filter-icon" onclick="resetCategoryFilter()" style="right: 10px;"></i>
-        <input type="text" id="searchInput" name="search" placeholder="Search.." oninput="searchByPartName()">
+        <div class="select-container">
+          <select id="categoryFilter" onchange="filterByCategory()">
+            <option value="">All Categories</option>
+            <option value="brake system">Brake System</option>
+            <option value="filters">Filters</option>
+            <option value="engine">Engine</option>
+            <option value="body">Body</option>
+            <option value="suspension">Suspension</option>
+            <option value="windscreen cleaning system">Windscreen Cleaning System</option>
+            <option value="steering">Steering</option>
+            <option value="clutch">Clutch</option>
+            <option value="electric system">Electric System</option>
+            <option value="doors">Doors</option>
+            <option value="tyres">Tyres</option>
+          </select>
+        </div>
+        <div class="input-container">
+          <input type="text" id="searchInput" name="search" placeholder="Search.." oninput="searchByPartName()">
+        </div>
         <div class="search-icon">
           <i class="uil uil-search"></i>
         </div>

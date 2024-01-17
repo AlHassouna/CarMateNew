@@ -55,10 +55,3 @@ function filterByCategory() {
     }
   }
 }
-
-function resetCategoryFilter() {
-  var categoryFilter = document.getElementById("categoryFilter");
-  categoryFilter.selectedIndex = -1;
-  filterByCategory();
-  searchByPartName();
-}
