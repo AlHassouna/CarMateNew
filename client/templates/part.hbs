@@ -1,20 +1,30 @@
-<article id="all-parts" class="c-flex">
+<article>
+  <div class="PartBack">
+    <button class="btnParts back-btn" onclick="showAllPart()">
+      <i class="fa-solid fa-arrow-left-long"></i>
+      <h1 class="h1TitleParts">Car Parts Market</h1>
+    </button>
+  </div>
+
   <div class="parts">
     <div class="header">
-      <h1>Car Parts Market</h1>
       <div class="search-container">
-        <input type="text" name="search" placeholder="Search..">
+        <i class="uil uil-list-ul filter-icon" onclick="resetCategoryFilter()" style="right: 10px;"></i>
+        <input type="text" id="searchInput" name="search" placeholder="Search.." oninput="searchByPartName()">
+        <div class="search-icon">
+          <i class="uil uil-search"></i>
+        </div>
         <i class="uil uil-shopping-cart-alt shopping-cart-icon" onclick="navigateToCart()"></i>
       </div>
     </div>
 
     <div class="parts-container">
       {{#each parts}}
-        <div class="part-minicard">
+        <div class="part-minicard" data-category="{{category}}">
           <div class="part">
             <img src="{{image}}" alt="{{name}}">
             <h2>{{name}}</h2>
-            <p>Category: {{category}}</p>
+            <p>Category: {{categorey}}</p>
             <p>Cost: <span class="blue-text">{{cost}}{{currency}}</span></p>
             <button class="add-to-cart-button" data-part-index="{{@index}}" onclick="AddToCart()">Add to Cart</button>
           </div>
