@@ -16,6 +16,14 @@ function showAllPart() {
   renderer.renderAllPart(apiManager.data);
 }
 function navigateToCart() {
-  renderer.renderAllCart(apiManager.data);
+  showAllCart();
+  //  renderer.renderAllCart(apiManager.data);
   //  window.location.href = "../templates/cart.hbs";
+}
+function AddToCart() {
+  const partIndex = $(event.target).data("part-index");
+  apiManager.addToCart(partIndex);
+}
+function showAllCart() {
+  renderer.renderAllCart(renderer.getCartData());
 }

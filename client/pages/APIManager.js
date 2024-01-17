@@ -1,9 +1,11 @@
 class APIManager {
   /* ATTRIBUTES */
   #data = [];
-
+  cartData = [];
   /* CONSTRUCTOR */
-  constructor() {}
+  constructor() {
+    this.cartData = [];
+  }
 
   /* PRIVATE */
 
@@ -35,7 +37,13 @@ class APIManager {
       },
     });
   }
+  addToCart(part) {
+    this.cartData.push(part);
+  }
 
+  getCartData() {
+    return this.cartData;
+  }
   get data() {
     return this.#data;
   }
