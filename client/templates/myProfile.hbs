@@ -1,0 +1,25 @@
+<article id="my-profile">
+  <h2 class="profile-header c-flex title">My Profile</h2>
+  <section class="user-details c-flex">
+    <span>
+      Hello,
+      <b>{{name}}</b>
+    </span>
+    <button class="btn edit-btn">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </button>
+  </section>
+  <section class="user-orders">
+    <h2>My Orders</h2>
+    <ul class="my-orders-list c-flex">
+      {{#each orders}}
+        <li class="my-orders-list__item" onclick="showMyOrder('{{@index}}')">
+          <h3>Order ID: <b>{{slice _id}}</b></h3>
+          <span class="my-order-status">{{status}}</span>
+          <span class="my-order-date">{{date}}</span>
+          <span class="my-order-total">Total: {{total}} ₪</span>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+</article>

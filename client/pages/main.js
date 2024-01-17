@@ -37,5 +37,12 @@ function showAllCart() {
 }
 async function showMyProfile() {
   await apiManager.getUser();
-  // renderer.renderMyProfile(apiManager.data)
+  renderer.renderMyProfile(apiManager.data);
+}
+
+async function showMyOrder(idx) {
+  const userID = apiManager.data._id;
+  const orderId = apiManager.data.orders[idx]._id;
+  await apiManager.getOrder(orderId); //populated order
+  renderer.renderMyOrder({ userID, ...apiManager.data });
 }
