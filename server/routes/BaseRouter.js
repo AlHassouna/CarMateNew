@@ -40,10 +40,22 @@ class BaseRouter {
         }
     }
 
+    async getMany(req, res) {
+        const category = req.params.category;
+        try {
+            const parts = await this.model.find({category: category}).populate('car');
+            res.send(parts);
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Internal Server Error');
+        }
+    }
+
     initializeRoutes() {
         this.router.get('/', this.getAll.bind(this));
         this.router.post('/', this.create.bind(this));
         this.router.get('/:id', this.getOne.bind(this));
+        this.router.get('/category/:category', this.getMany.bind(this));
     }
 }
 
