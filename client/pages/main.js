@@ -1,6 +1,11 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
 
+
+function showHomePage() {
+    window.location.href = "../../index.html";
+}
+
 async function showAllServices() {
     await apiManager.getAllServices();
     renderer.renderAllServices(apiManager.data);

@@ -8,3 +8,12 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.back-btn {
+    box-shadow: none;
+}
+
+.back-btn > i {
+    color: black;
+    font-size: 2rem;
+}
