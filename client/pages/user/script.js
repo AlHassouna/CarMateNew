@@ -1,3 +1,11 @@
+renderer.renderNavBar();
+
+async function start() {
+    await showMyProfile();
+}
+
+start();
+
 function showServiceDetails(idx) {
     renderer.renderServiceDetails({idx, ...apiManager.data[idx]});
 }

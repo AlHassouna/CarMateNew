@@ -19,7 +19,7 @@ class APIManager {
 
     /* PUBLIC API */
     async getAllServices() {
-        const allServices = await $.ajax("api/v1/services");
+        const allServices = await $.ajax("/api/v1/services");
         this.#data = allServices.map((service) => {
             const {id, ...details} = service.details;
             return {
@@ -35,13 +35,19 @@ class APIManager {
     }
 
     async getAllParts() {
-        const allParts = await $.ajax("api/v1/parts");
+        const allParts = await $.ajax("/api/v1/parts");
         this.#data = allParts;
     }
 
-    async getAllUsers() {
-        const allUsers = await $.ajax("api/v1/users");
-        this.#data = allUsers;
+
+    getAllUsers() {
+        $.ajax({
+            url: "/api/v1/users",
+            async: false,
+            success: (users) => {
+                this.#data = users;
+            },
+        });
     }
 
     addToCart(part) {
@@ -118,13 +124,10 @@ class APIManager {
     filterPartsByCategory(category) {
         $.ajax({
             url: "/api/v1/parts/category/" + category,
+            async: false,
             success: (parts) => {
-                this.#data = parts;
-                renderer.renderAllPart(apiManager.data);
+                this.#data = parts
             },
-            error: (error) => {
-                console.error("Error filtering parts by category:", error);
-            }
         });
     }
 }

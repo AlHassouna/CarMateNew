@@ -1,7 +1,5 @@
 class Renderer {
     /* ATTRIBUTES */
-
-    #partials = {};
     #templates = {
         navbar: null,
         admin: null,
@@ -20,11 +18,6 @@ class Renderer {
         this.#compile();
         this.#registerHelpers();
         this.cartData = [];
-        // this.#registerPartials();
-    }
-
-    /* PRIVATE */
-    #setActiveNavItem() {
     }
 
     #registerHelpers() {
@@ -35,19 +28,6 @@ class Renderer {
             (num1 / num2).toFixed(5)
         );
         Handlebars.registerHelper("slice", (id) => id.slice(-5));
-    }
-
-    #registerPartials() {
-        for (const key of Object.keys(this.#partials)) {
-            $.ajax({
-                url: `../../templates/${key}.hbs`,
-                dataType: "html",
-                async: false,
-                success: (source) => {
-                    this.#partials[key] = Handlebars.registerPartial(key, source);
-                },
-            });
-        }
     }
 
     /* PUBLIC API */
@@ -71,7 +51,6 @@ class Renderer {
     renderAllServices(services) {
         $("main").empty();
         $("main").append(this.#templates.allServices({services}));
-        // setActiveNavItem();
     }
 
     renderServiceDetails(service) {
@@ -121,9 +100,18 @@ class Renderer {
         return this.cartData;
     }
 
+
     renderAllCart(carts) {
         $("main").empty();
         $("main").append(this.#templates.cart({carts}));
+    }
+
+    removeFromCart(partName) {
+        const partIndex = cartItems.findIndex((item) => item.name === partName);
+        if (partIndex !== -1) {
+            cartItems.splice(partIndex, 1);
+            updateCart();
+        }
     }
 
     renderTrackService(service) {
@@ -136,4 +124,42 @@ class Renderer {
         $("main").empty();
         $("main").append(this.#templates.orders({orders}));
     }
+
+    renderCart() {
+        const cartContainer = document.querySelector(".Cart-Items");
+        cartContainer.innerHTML = "";
+
+        cartItems.forEach((item) => {
+            const cartItemElement = document.createElement("div");
+            cartItemElement.classList.add("Cart-Item");
+
+            // ... (Add logic to create the cart item HTML structure)
+
+            cartContainer.appendChild(cartItemElement);
+        });
+
+        const subtotalElement = document.querySelector(".Subtotal");
+        subtotalElement.textContent = `Sub-Total: ${calculateSubtotal()}{{currency}} (${
+            cartItems.length
+        } items)`;
+    }
+
+    updateCart() {
+        const totalCost = cartItems.reduce((total, item) => total + item.cost, 0);
+        const totalItems = cartItems.length;
+
+        document.querySelector(
+            ".Subtotal"
+        ).textContent = `Sub-Total: ${totalCost}${currency} (${totalItems} items)`;
+
+        const cartContainer = document.querySelector(".Cart-Items");
+        cartContainer.innerHTML = "";
+
+        cartItems.forEach((item) => {
+            const cartItemElement = document.createElement("div");
+            cartItemElement.className = "Cart-Item";
+            cartContainer.appendChild(cartItemElement);
+        });
+    }
+
 }

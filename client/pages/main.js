@@ -1,15 +1,19 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
-renderer.renderNavBar();
 
 async function showAllServices() {
     await apiManager.getAllServices();
     renderer.renderAllServices(apiManager.data);
 }
 
-async function showAllUsers() {
-    await apiManager.getAllUsers();
+function showAllUsers() {
+    apiManager.getAllUsers();
     renderer.renderAllUsers(apiManager.data);
+}
+
+async function showAllPart() {
+    await apiManager.getAllParts();
+    renderer.renderAllPart(apiManager.data);
 }
 
 async function showOrderedServiceDetails(idx, carImg) {
@@ -22,19 +26,9 @@ async function showMyTracking(service) {
     renderer.renderTrackService(service);
 }
 
+
 function navigateToCart() {
-    renderer.renderAllCart(apiManager.data);
-    //  window.location.href = "../templates/cart.hbs";
-}
-
-function showAllPart() {
-    apiManager.getAllParts();
-    renderer.renderAllPart(apiManager.data);
-}
-
-function showcomplited() {
-    apiManager.getMyServices();
-    renderer.renderAllorders(apiManager.data);
+    showAllCart();
 }
 
 function AddToCart() {
@@ -57,4 +51,40 @@ async function showMyOrder(idx) {
     const carImg = apiManager.data.car.image;
     await apiManager.getOrder(orderId); //populated order
     renderer.renderMyOrder({userID, carImg, ...apiManager.data});
+}
+
+function searchByPartName() {
+    var searchInput = document.getElementById("searchInput").value.toLowerCase();
+    var parts = document.getElementsByClassName("part-minicard");
+
+    for (var i = 0; i < parts.length; i++) {
+        var partName = parts[i].querySelector("h2").textContent.toLowerCase();
+
+        if (partName.includes(searchInput)) {
+            parts[i].style.display = "block";
+        } else {
+            parts[i].style.display = "none";
+        }
+    }
+}
+
+function removeFromCart(itemName) {
+    cartItems = cartItems.filter((item) => item.name !== itemName);
+    renderer.renderCart(); // Update the cart UI
+    console.log(`${itemName} removed from the cart`);
+}
+
+async function filterByCategory() {
+    let selectedCategory = document.getElementById("categoryFilter").value;
+    if (selectedCategory === "All Categories") {
+        await showAllPart();
+        return;
+    }
+    apiManager.filterPartsByCategory(selectedCategory);
+    renderer.renderAllPart(apiManager.data);
+    $("#categoryFilter").val(selectedCategory);
+}
+
+function calculateSubtotal() {
+    return cartItems.reduce((total, item) => total + item.cost, 0);
 }
