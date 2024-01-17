@@ -21,7 +21,7 @@
           <div class="about">
             <p class="price">{{cost}}{{currency}}</p>
           </div>
-          <div class="remove" >
+          <div class="remove" onclick="removeFromCart('{{name}}')">
   <i class="uil uil-trash-alt"></i>
 </div>
         </div>
@@ -31,7 +31,7 @@
  <div class="checkout">
  <div class="total">
 
-    <div class="Subtotal">Sub-Total: {{totalCost}}</div>
+    <div class="Subtotal">Sub-Total: {{cost}}{{currency}} </div>
 
  <button class="button">Checkout</button>
  </div>
