@@ -119,7 +119,9 @@
   gap: 1rem;
   font-size: 1.25rem;
   background-color: var(--blue-dark);
-} /* PART DETAILS */
+}
+
+/* PART DETAILS */
 .parts {
   background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
   height: 100vh;
@@ -453,4 +455,173 @@ input[id="address"] {
 #add-service .add-btn:hover {
   background-color: var(--red-light);
   color: var(--red-dark);
+}
+
+/* MY PROFILE */
+#my-profile {
+  margin: 1rem;
+}
+
+.profile-header {
+  gap: 0.5rem;
+  color: var(--blue-dark);
+  font-family: var(--main-font);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-shadow: 0px 0px 2px white;
+}
+
+.user-details {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+}
+
+#my-profile .edit-btn {
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: none;
+  box-shadow: none;
+  padding: 0.75rem;
+  color: var(--blue-dark);
+  border-radius: 5px;
+}
+
+#my-profile .edit-btn:hover {
+  background-color: var(--yellow-light);
+}
+
+.user-orders h2 {
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
+  font-weight: 600;
+  color: var(--red-dark);
+}
+
+.my-orders-list {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.my-orders-list__item {
+  font-size: 1.25rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.my-orders-list__item:hover {
+  box-shadow: 0 0 5px var(--red-dark);
+}
+
+.my-order-status {
+  color: var(--green-dark);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.my-order-date {
+  justify-self: center;
+}
+
+.my-order-total {
+  color: var(--red-dark);
+  font-weight: 600;
+}
+
+/* MY PROFILE */
+#my-order {
+  margin: 1rem;
+}
+
+.my-order-header {
+  gap: 0.5rem;
+  color: var(--blue-dark);
+  font-family: var(--main-font);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-shadow: 0px 0px 2px white;
+}
+
+.my-order-header__details {
+  font-size: 1.25rem;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+}
+
+.my-order-items-list {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  width: 100%;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.service-item,
+.part-item {
+  font-size: 1.15rem;
+  font-weight: 500;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.service-item:hover,
+.part-item:hover {
+  box-shadow: 0 0 5px var(--red-dark);
+}
+
+.service-item {
+  grid-template-areas: "title title" "name ." "status total";
+}
+.part-item {
+  grid-template-areas: "title title" "name img" "total img" "status img";
+}
+
+.part-item__title,
+.service-item__title {
+  grid-area: title;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.part-item__name,
+.service-item__name {
+  grid-area: name;
+}
+.part-item__img {
+  grid-area: img;
+}
+.part-item__total,
+.service-item__total {
+  grid-area: total;
+  color: var(--red-dark);
+}
+.part-item__status,
+.service-item__status {
+  grid-area: status;
+  color: var(--green-dark);
 }

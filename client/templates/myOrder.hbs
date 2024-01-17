@@ -1,0 +1,33 @@
+<article id="my-order">
+  <h2 class="my-order-header c-flex title"> ORDER ID: <b>{{slice _id}}</b> </h2>
+  <section class="my-order-header__details c-flex">
+    <span class="my-order-details__address">Address: {{address}}</span>
+    <span class="my-order-date">Date: {{date}}</span>
+    <span class="my-order-total">Total: {{total}} ₪</span>
+    <span class="my-order-status">Status: {{status}}</span>
+  </section>
+  <section class="my-order-items">
+    <ul class="my-order-items-list c-flex">
+      {{#each carServices}}
+        <li
+          class="service-item"
+          onclick="showOrderedServiceDetails('{{@index}}')"
+        >
+          <h3 class="service-item__title">CAR SERVICE</h3>
+          <span class="service-item__name">{{name}}</span>
+          <span class="service-item__status">{{status}}</span>
+          <span class="service-item__total">Total: {{total}} {{currency}}</span>
+        </li>
+      {{/each}}
+      {{#each carParts}}
+        <li class="part-item">
+          <h3 class="part-item__title">CAR PART</h3>
+          <span class="part-item__name">{{name}}</span>
+          <img class="img part-item__img" src="{{image}}" alt="partImg" />
+          <span class="part-item__total">Total: {{total}} {{currency}}</span>
+          <span class="part-item__status">{{status}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+</article>

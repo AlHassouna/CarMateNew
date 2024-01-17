@@ -8,6 +8,8 @@ class Renderer {
     allServices: null,
     addService: null,
     serviceDetails: null,
+    myProfile: null,
+    myOrder: null,
     part: null,
     cart: null,
   };
@@ -30,6 +32,7 @@ class Renderer {
     Handlebars.registerHelper("divide", (num1, num2) =>
       (num1 / num2).toFixed(5)
     );
+    Handlebars.registerHelper("slice", (id) => id.slice(-5));
   }
 
   #registerPartials() {
@@ -79,6 +82,16 @@ class Renderer {
     $("main").append(this.#templates.addService(service));
   }
 
+  renderMyProfile(profile) {
+    $("main").empty();
+    $("main").append(this.#templates.myProfile(profile));
+  }
+
+  renderMyOrder(order) {
+    $("main").empty();
+    $("main").append(this.#templates.myOrder(order));
+  }
+
   renderAllUsers(users) {
     $("main").empty();
     $("main").append(this.#templates.admin(users));
@@ -109,5 +122,9 @@ class Renderer {
   renderAllCart(carts) {
     $("main").empty();
     $("main").append(this.#templates.cart({ carts }));
+  }
+  renderAllorders(orders) {
+    $("main").empty();
+    $("main").append(this.#templates.orders({ orders }));
   }
 }

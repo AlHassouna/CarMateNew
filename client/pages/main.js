@@ -20,10 +20,29 @@ function navigateToCart() {
   //  renderer.renderAllCart(apiManager.data);
   //  window.location.href = "../templates/cart.hbs";
 }
+function showAllPart() {
+  apiManager.getAllParts();
+  renderer.renderAllPart(apiManager.data);
+}
+function showcomplited() {
+  apiManager.getMyServices();
+  renderer.renderAllorders(apiManager.data);
+}
 function AddToCart() {
   const partIndex = $(event.target).data("part-index");
   apiManager.addToCart(partIndex);
 }
 function showAllCart() {
   renderer.renderAllCart(renderer.getCartData());
+}
+async function showMyProfile() {
+  await apiManager.getUser();
+  renderer.renderMyProfile(apiManager.data);
+}
+
+async function showMyOrder(idx) {
+  const userID = apiManager.data._id;
+  const orderId = apiManager.data.orders[idx]._id;
+  await apiManager.getOrder(orderId); //populated order
+  renderer.renderMyOrder({ userID, ...apiManager.data });
 }
