@@ -1,130 +1,139 @@
 class Renderer {
-  /* ATTRIBUTES */
+    /* ATTRIBUTES */
 
-  #partials = {};
-  #templates = {
-    navbar: null,
-    admin: null,
-    allServices: null,
-    addService: null,
-    serviceDetails: null,
-    myProfile: null,
-    myOrder: null,
-    part: null,
-    cart: null,
-  };
+    #partials = {};
+    #templates = {
+        navbar: null,
+        admin: null,
+        allServices: null,
+        addService: null,
+        serviceDetails: null,
+        myProfile: null,
+        myOrder: null,
+        part: null,
+        cart: null,
+        trackService: null,
+    };
 
-  /* CONSTRUCTOR */
-  constructor() {
-    this.#compile();
-    this.#registerHelpers();
-    this.cartData = [];
-    // this.#registerPartials();
-  }
-
-  /* PRIVATE */
-  #setActiveNavItem() {}
-
-  #registerHelpers() {
-    Handlebars.registerHelper("multiply", (num1, num2) =>
-      (num1 * num2).toFixed(2)
-    );
-    Handlebars.registerHelper("divide", (num1, num2) =>
-      (num1 / num2).toFixed(5)
-    );
-    Handlebars.registerHelper("slice", (id) => id.slice(-5));
-  }
-
-  #registerPartials() {
-    for (const key of Object.keys(this.#partials)) {
-      $.ajax({
-        url: `../../templates/${key}.hbs`,
-        dataType: "html",
-        async: false,
-        success: (source) => {
-          this.#partials[key] = Handlebars.registerPartial(key, source);
-        },
-      });
+    /* CONSTRUCTOR */
+    constructor() {
+        this.#compile();
+        this.#registerHelpers();
+        this.cartData = [];
+        // this.#registerPartials();
     }
-  }
 
-  /* PUBLIC API */
-  #compile() {
-    for (const key of Object.keys(this.#templates)) {
-      $.ajax({
-        url: `../../templates/${key}.hbs`,
-        dataType: "html",
-        async: false,
-        success: (source) => {
-          this.#templates[key] = Handlebars.compile(source);
-        },
-      });
+    /* PRIVATE */
+    #setActiveNavItem() {
     }
-  }
 
-  renderNavBar() {
-    $("body").append(this.#templates.navbar({}));
-  }
+    #registerHelpers() {
+        Handlebars.registerHelper("multiply", (num1, num2) =>
+            (num1 * num2).toFixed(2)
+        );
+        Handlebars.registerHelper("divide", (num1, num2) =>
+            (num1 / num2).toFixed(5)
+        );
+        Handlebars.registerHelper("slice", (id) => id.slice(-5));
+    }
 
-  renderAllServices(services) {
-    $("main").empty();
-    $("main").append(this.#templates.allServices({ services }));
-    // setActiveNavItem();
-  }
+    #registerPartials() {
+        for (const key of Object.keys(this.#partials)) {
+            $.ajax({
+                url: `../../templates/${key}.hbs`,
+                dataType: "html",
+                async: false,
+                success: (source) => {
+                    this.#partials[key] = Handlebars.registerPartial(key, source);
+                },
+            });
+        }
+    }
 
-  renderServiceDetails(service) {
-    $("main").empty();
-    $("main").append(this.#templates.serviceDetails(service));
-  }
+    /* PUBLIC API */
+    #compile() {
+        for (const key of Object.keys(this.#templates)) {
+            $.ajax({
+                url: `../../templates/${key}.hbs`,
+                dataType: "html",
+                async: false,
+                success: (source) => {
+                    this.#templates[key] = Handlebars.compile(source);
+                },
+            });
+        }
+    }
 
-  renderAddService(service) {
-    $("main").empty();
-    $("main").append(this.#templates.addService(service));
-  }
+    renderNavBar() {
+        $("body").append(this.#templates.navbar({}));
+    }
 
-  renderMyProfile(profile) {
-    $("main").empty();
-    $("main").append(this.#templates.myProfile(profile));
-  }
+    renderAllServices(services) {
+        $("main").empty();
+        $("main").append(this.#templates.allServices({services}));
+        // setActiveNavItem();
+    }
 
-  renderMyOrder(order) {
-    $("main").empty();
-    $("main").append(this.#templates.myOrder(order));
-  }
+    renderServiceDetails(service) {
+        $("main").empty();
+        $("main").append(this.#templates.serviceDetails(service));
+    }
 
-  renderAllUsers(users) {
-    $("main").empty();
-    $("main").append(this.#templates.admin(users));
-  }
+    renderAddService(service) {
+        $("main").empty();
+        $("main").append(this.#templates.addService(service));
+    }
 
-  renderAllPart(parts) {
-    $("main").empty();
-    $("main").append(this.#templates.part({ parts }));
+    renderMyProfile(profile) {
+        $("main").empty();
+        $("main").append(this.#templates.myProfile(profile));
+    }
 
-    const renderer = this; // Save a reference to the current renderer instance
+    renderMyOrder(order) {
+        $("main").empty();
+        $("main").append(this.#templates.myOrder(order));
+    }
 
-    $(".add-to-cart-button").on("click", function () {
-      const partIndex = $(this).data("part-index");
-      const selectedPart = parts[partIndex];
-      renderer.addToCart(selectedPart); // Use the saved reference to call addToCart
-      renderer.renderAllCart(renderer.getCartData());
-    });
-  }
+    renderAllUsers(users) {
+        $("main").empty();
+        $("main").append(this.#templates.admin(users));
+    }
 
-  addToCart(part) {
-    this.cartData.push(part);
-  }
+    renderAllPart(parts) {
+        $("main").empty();
+        $("main").append(this.#templates.part({parts}));
 
-  getCartData() {
-    return this.cartData;
-  }
+        const renderer = this; // Save a reference to the current renderer instance
 
-  renderAllCart(carts) {
-    $("main").empty();
-    $("main").append(this.#templates.cart({ carts }));
-  }
-  renderAllorders(orders) {
-    $("main").empty();
-    $("main").append(this.#templates.orders({ orders }));
-  }
+        $(".add-to-cart-button").on("click", function () {
+            const partIndex = $(this).data("part-index");
+            const selectedPart = parts[partIndex];
+            renderer.addToCart(selectedPart); // Use the saved reference to call addToCart
+            renderer.renderAllCart(renderer.getCartData());
+        });
+    }
+
+    addToCart(part) {
+        this.cartData.push(part);
+    }
+
+    getCartData() {
+        return this.cartData;
+    }
+
+    renderAllCart(carts) {
+        $("main").empty();
+        $("main").append(this.#templates.cart({carts}));
+    }
+
+    renderTrackService(service) {
+        $("main").empty();
+        $("main").append(this.#templates.trackService(service));
+        colorCircle(service.status);
+    }
+
+    renderAllorders(orders) {
+        $("main").empty();
+        $("main").append(this.#templates.orders({orders}));
+    }
 }
