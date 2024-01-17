@@ -8,6 +8,7 @@ class Renderer {
     serviceDetails: null,
     part: null,
     cart: null,
+    orders: null,
   };
 
   /* CONSTRUCTOR */
@@ -74,5 +75,9 @@ class Renderer {
   renderAllCart(carts) {
     $("main").empty();
     $("main").append(this.#templates.cart({ carts }));
+  }
+  renderAllorders(orders) {
+    $("main").empty();
+    $("main").append(this.#templates.orders({ orders }));
   }
 }

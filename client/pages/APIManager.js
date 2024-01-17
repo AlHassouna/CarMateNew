@@ -36,6 +36,20 @@ class APIManager {
     });
   }
 
+  getMyServices() {
+    const apiUrl = `.../services/${userId}`;
+
+  $.ajax({
+    url: apiUrl,
+    async: false,
+    success: (orders) => {
+        this.#data = orders;
+    },
+  });
+ }
+
+  
+
   get data() {
     return this.#data;
   }

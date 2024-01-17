@@ -1,0 +1,30 @@
+
+<div class="header">
+    <section class="all-users">
+    <ul>
+      {{#each}}
+        <li>
+          <div>{{name.first}} {{name.last}}</div>
+          <div>{{image}}</div>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+    <div class="orderButtens">
+        <button class="upcoming" onclick="upComing()">Up Coming</button>
+        <button class="past" onclick="past()">Past</button>
+</div>
+  <div id="allorders">
+    {{#each orders}}
+        <div class="orders">
+            <h3>Basic Service</h3>
+            <p>Book id: {{id}}</p>
+            <h3>Status: {{status}}</h3><br>
+            <h3>Type:{{name}}</h3>
+            <p>Date: 22/11/2022</p>
+            <p>Pick-Up Time: 9:30</p>
+            <button class="confirm"  onclick="conf()">confirm</button>
+            <button class="cancel"  onclick="cancel()">cancel</button>
+        </div>
+    {{/each}}
+</div>
