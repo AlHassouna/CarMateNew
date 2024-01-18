@@ -247,13 +247,14 @@ button:disabled {
 main {
   overflow-y: scroll;
   flex-grow: 1;
-  background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
+  background: #c7a900;
   overflow-y: scroll;
 }
 
 /* NAVBAR */
 .main-footer {
   background-color: var(--blue-dark);
+  height: 10%;
 }
 
 .navbar {
@@ -266,7 +267,6 @@ main {
 
 .nav-btn {
   width: 100%;
-  padding: 1.5rem 1rem 1rem 1rem;
   font-size: 2rem;
   box-shadow: none;
   border-radius: 0;
