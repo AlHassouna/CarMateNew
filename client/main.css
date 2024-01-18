@@ -247,7 +247,7 @@ button:disabled {
 main {
   overflow-y: scroll;
   flex-grow: 1;
-  background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
+  background: #c7a900;
   overflow-y: scroll;
 }
 

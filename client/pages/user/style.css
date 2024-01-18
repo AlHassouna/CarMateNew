@@ -120,10 +120,16 @@
   font-size: 1.25rem;
   background-color: var(--blue-dark);
 }
-
+.text-xs {
+  color: black;
+  font-weight: bold;
+}
+.text-base {
+  color: black;
+}
 /* PART DETAILS */
 .parts {
-  background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
+  background: #c7a900;
   height: 100vh;
   display: flex;
   flex-direction: column;
